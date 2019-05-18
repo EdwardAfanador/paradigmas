@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"	>
+	
+<h:head> </h:head> <h:body style="text-align:center">
+    <p:growl id="mensajes" showDetail="true" life="2000" />
+   <h:form>
+      <p:panel header="Registrarse" style="width:400px">
+        <h:panelGrid columns="2" cellpadding="5">
+         <h:outputLabel for="idA" value="Usuario:" />
+          <p:inputText value="#{controladorLogin.arrendador.ID_Arrendador}" id="ID_A"
+             required="true" label="ID_A" />
+             <h:outputLabel for="contraseñaA" value="Contraseña: " />
+          <p:password value="#{controladorLogin.login.contraseña}" id="contraseñaA"
+             required="true" label="contraseñaA" />
+          <h:outputLabel for="nombre" value="Nombre:" />
+          <p:inputText value="#{controladorLogin.arrendador.nombre_Arrendador}" id="nombreA"
+             required="true" label="nombreA" />
+          <h:outputLabel for="Apellido" value="Apellido:" />
+        <p:inputText value="#{controladorLogin.arrendador.apellido_Arrendador}" id="apellidoA" required="true"
+           label="apellidoA" /> 
+          <h:outputLabel for="numero" value="Numero Telefono:" />
+        <p:inputText value="#{controladorLogin.arrendador.numero_Arrendador}" id="numeroA" required="true"
+           label="numeroA" />
+     
+                    
+         <f:facet name="footer">
+             <p:commandButton id="guardarregistro" value="Guardar"
+             actionListener = "#{controladorLogin.guardarArrendador}" update=":mensajes"
+             oncomplete="manejarRegistrar(xhr,status,args)" />
+        </f:facet>               
+              
+      </h:panelGrid>
+    </p:panel>
+  </h:form>
+</h:body>
+
+<script type="text/javascript">
+  //<![CDATA[
+function manejarRegistrar(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeadoxd) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 200);
+    }
+  }
+//]]>
+</script>
+</html>

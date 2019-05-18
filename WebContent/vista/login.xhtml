@@ -1,0 +1,51 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"	>
+	
+<h:head> </h:head> 
+<h:body style="text-align:center">
+    <p:growl id="mensajes" showDetail="true" life="2000" />
+   <h:form>
+      <p:panel header="Login" style="width:400px">
+        <h:panelGrid columns="2" cellpadding="5">
+          <h:outputLabel for="username" value="Usuario:" />
+          <p:inputText  id="username" value="#{controladorLogin.login.usuario}"
+              label="username" />
+          <h:outputLabel for="password" value="Constraseña:" />
+        <p:password value="#{controladorLogin.login.contraseña}" id="password" 
+           label="password" />
+
+           
+        <f:facet name="footer">
+          <p:commandButton id="loginButton" value="Ingresar"
+              update=":mensajes"
+             
+             action = "#{controladorLogin.ingresar}" />
+             <p:commandButton id="uno" value="Registrar Arrendador"
+             action = "registrarArrendador.xhtml" update=":mensajes"
+             oncomplete="manejarRegistrar(xhr,status,args)" />
+             <p:commandButton id="dos" value="Registro Estudiante"
+             action = "registrarEstudiante.xhtml" update=":mensajes"
+             oncomplete="manejarRegistrar(xhr,status,args)" />
+        </f:facet>
+      </h:panelGrid>
+    </p:panel>
+  </h:form>
+</h:body>
+<script type="text/javascript">
+  //<![CDATA[
+  function manejarLogin(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeado) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 200);
+    }
+  }
+//]]>
+</script>
+</html>
